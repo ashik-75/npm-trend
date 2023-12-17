@@ -21,7 +21,7 @@ const PackageTag: React.FC<PackageTagProps> = ({ packageString }) => {
     router.push(`/${pkgString}`);
   };
   return (
-    <div className="flex gap-5">
+    <div className="flex flex-wrap gap-5">
       {packages.map((pkg) => (
         <div
           color="primary"

@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppProvider>
-          <div className="mx-auto max-w-7xl space-y-5 px-3 sm:p-0">
+          <div className="mx-auto max-w-7xl space-y-5 px-3">
             <SearchBar />
 
             <div>{children}</div>
