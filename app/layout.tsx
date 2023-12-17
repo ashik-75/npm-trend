@@ -28,7 +28,7 @@ export default function RootLayout({
         <AppProvider>
           <div className="mx-auto max-w-7xl space-y-5 px-3 sm:p-0">
             <SearchBar />
-            <PackageTag />
+
             <div>{children}</div>
             <SearchSuggestion />
           </div>

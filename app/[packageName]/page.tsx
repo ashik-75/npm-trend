@@ -4,6 +4,7 @@ import { downloadRange } from "@/lib/constant";
 import { getUniqueArray } from "@/lib/helper";
 import { NpmDownload } from "@/lib/types";
 import LineChartX from "@/ui/line-chart";
+import PackageTag from "@/ui/package-tag";
 import SelectYear from "@/ui/select-year";
 import React, { useState } from "react";
 
@@ -20,6 +21,7 @@ const Details = ({ params }: { params: { packageName: string } }) => {
 
   return (
     <div className="relative space-y-5">
+      <PackageTag packageString={params.packageName} />
       <SelectYear range={range} setRange={setRange} />
 
       <LineChartX

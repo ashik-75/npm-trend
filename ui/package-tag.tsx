@@ -27,7 +27,7 @@ const PackageTag: React.FC<PackageTagProps> = ({ packageString }) => {
           color="primary"
           className="flex cursor-pointer items-center gap-3 rounded-full border border-zinc-200 px-2 py-1 text-zinc-500"
         >
-          <span>{pkg}</span>
+          <span className="text-sm">{pkg}</span>
 
           <Icon
             onClick={() => removePackage(pkg)}
