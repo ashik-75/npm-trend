@@ -16,19 +16,26 @@ export const formatDataForChart = (list: NpmDownload[]): ChartEntry[] => {
   }, []);
 };
 
-export const getUniqueArray = (packet?: string) => {
-  if (packet === undefined) {
-    return [];
-  }
-
-  const setFromArray = new Set(packet.split("-vs-"));
-  const uniqueArray: string[] = [];
-
-  setFromArray.forEach((value) => {
-    uniqueArray.push(value);
+const getUniqueArray = (array: string[]) => {
+  const uniqueArray = array.filter((value, index, self) => {
+    return self.indexOf(value) === index;
   });
-
   return uniqueArray;
+};
+
+export const getPackagesFromParams = (query: string[]): string[] => {
+  // query = ['react-vs-vue'] and some are ['react-vs-@angular','core]
+  const joinQuery = query?.join("/"); // output like "react-vs-@angular/core";
+  const splitPackages = joinQuery
+    ?.split("-vs-")
+    .map((pkg) => decodeURIComponent(pkg));
+  const sortPackages = getUniqueArray(splitPackages)?.sort();
+
+  return sortPackages; // ['react',"@angular/core"]
+};
+
+export const packagesToParams = (packages: string[]) => {
+  return getUniqueArray(packages).sort().join("-vs-");
 };
 
 export const valueFormatter = (number: number) =>

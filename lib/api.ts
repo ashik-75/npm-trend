@@ -38,12 +38,13 @@ export const useGetDownloadList = ({
   range: string;
 }) => {
   return useQueries({
-    queries: packages.map((pkg) => {
-      return {
-        queryKey: ["package", pkg, range],
-        queryFn: () => fetchPackageDownloadStat({ range, packageName: pkg }),
-      };
-    }),
+    queries:
+      packages?.map((pkg) => {
+        return {
+          queryKey: ["package", pkg, range],
+          queryFn: () => fetchPackageDownloadStat({ range, packageName: pkg }),
+        };
+      }) ?? [],
   });
 };
 

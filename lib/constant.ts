@@ -60,10 +60,6 @@ export const frontendSuggestion = [
     url: "zustand-vs-redux-vs-recoil",
   },
   {
-    title: "React Native Vs Flutter",
-    url: "react-native-vs-flutter",
-  },
-  {
     title: "@angular/core vs angular vs react vs vue",
     url: "@angular/core-vs-angular-vs-react-vs-vue",
   },
@@ -76,17 +72,10 @@ export const frontendSuggestion = [
     url: "webpack-vs-parcel",
   },
   {
-    title: "TypeScript vs JavaScript",
-    url: "typescript-vs-javascript",
-  },
-  {
     title: "Jest vs Mocha vs Jasmine",
     url: "jest-vs-mocha-vs-jasmine",
   },
-  {
-    title: "Next.js vs Nuxt.js",
-    url: "nextjs-vs-nuxtjs",
-  },
+
   {
     title: "Tailwind CSS vs Bootstrap",
     url: "tailwind-css-vs-bootstrap",
@@ -107,28 +96,16 @@ export const backendSuggestion = [
     url: "express-vs-koa",
   },
   {
-    title: "Node.js vs Ruby on Rails",
-    url: "node-vs-rails",
+    title: "Node.js vs Bun",
+    url: "node-vs-bun",
   },
   {
     title: "MongoDB vs PostgreSQL",
-    url: "mongodb-vs-postgresql",
-  },
-  {
-    title: "GraphQL vs REST",
-    url: "graphql-vs-rest",
-  },
-  {
-    title: "Spring Boot vs Micronaut",
-    url: "spring-boot-vs-micronaut",
-  },
-  {
-    title: "ASP.NET Core vs Django",
-    url: "aspnet-core-vs-django",
+    url: "mongodb-vs-pg",
   },
   {
     title: "NestJS vs Fastify",
-    url: "nestjs-vs-fastify",
+    url: "nest-vs-fastify",
   },
   {
     title: "Rust vs Go",

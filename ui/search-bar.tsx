@@ -3,13 +3,17 @@
 import React, { FormEvent, useState } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
 import { Input } from "@nextui-org/react";
-import { getUniqueArray } from "@/lib/helper";
+import { getPackagesFromParams, packagesToParams } from "@/lib/helper";
 import { useParams, useRouter } from "next/navigation";
 import { useSearchNpmData } from "@/lib/api";
 import Icon from "./icon";
+import { log } from "console";
 
 const SearchBar: React.FC = () => {
   const params = useParams();
+  const packages = params?.packages
+    ? getPackagesFromParams(params?.packages as string[])
+    : [];
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const debounceSearchTerm = useDebounce(searchTerm, 500);
@@ -29,10 +33,9 @@ const SearchBar: React.FC = () => {
 
   const handleNavigation = (path: string) => {
     if (path) {
-      const modifiedPath = params.packageName
-        ? getUniqueArray(`${params.packageName}-vs-${path}`).join("-vs-")
-        : path;
-      router.push(modifiedPath);
+      const modifiedPath =
+        packages.length > 0 ? packagesToParams([...packages, path]) : path;
+      router.push(`/${modifiedPath}`);
       setSearchTerm("");
     }
   };
@@ -69,7 +72,7 @@ const SearchBar: React.FC = () => {
             {searchResult.data?.objects.map((np) => (
               <div
                 onClick={() => handleNavigation(np.package.name)}
-                key={np.package.version}
+                key={np.package.name}
                 className="cursor-pointer bg-white p-4 hover:bg-slate-50"
               >
                 <h1 className="font-bold">{np.package.name}</h1>

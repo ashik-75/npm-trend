@@ -13,7 +13,7 @@ const SearchSuggestion: React.FC = () => {
         <List>
           {frontendSuggestion.map((suggestion) => (
             <ListItem key={suggestion.url}>
-              <Link href={`${suggestion.url}`}>{suggestion.title}</Link>
+              <Link href={`/${suggestion.url}`}>{suggestion.title}</Link>
             </ListItem>
           ))}
         </List>
@@ -27,7 +27,7 @@ const SearchSuggestion: React.FC = () => {
         <List>
           {backendSuggestion.map((suggestion) => (
             <ListItem key={suggestion.url}>
-              <Link href={`${suggestion.url}`}>{suggestion.title}</Link>
+              <Link href={`/${suggestion.url}`}>{suggestion.title}</Link>
             </ListItem>
           ))}
         </List>
