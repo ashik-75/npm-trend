@@ -1,7 +1,12 @@
+import HoverCardDemo from "@/ui/hover-card";
 import React from "react";
 
 const Page = () => {
-  return <div>Page</div>;
+  return (
+    <div>
+      <HoverCardDemo name="React" />
+    </div>
+  );
 };
 
 export default Page;

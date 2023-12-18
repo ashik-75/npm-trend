@@ -1,5 +1,5 @@
 import { useQueries, useQuery } from "@tanstack/react-query";
-import { NpmDownload, NpmSearch } from "@/lib/types";
+import { NpmDownload, NpmSearch, Package } from "@/lib/types";
 import { client } from "./client";
 
 const fetchPackages = (endpoint: string | undefined): Promise<NpmSearch> => {
@@ -44,5 +44,19 @@ export const useGetDownloadList = ({
         queryFn: () => fetchPackageDownloadStat({ range, packageName: pkg }),
       };
     }),
+  });
+};
+
+const fetchPackage = (endpoint: string | undefined): Promise<Package> => {
+  return endpoint === undefined
+    ? Promise.reject("Package name undefined")
+    : client(endpoint);
+};
+
+export const useGetPackageDetails = (packageName: string | undefined) => {
+  return useQuery({
+    queryKey: ["package", [packageName]],
+    queryFn: () => fetchPackage(packageName),
+    enabled: Boolean(packageName),
   });
 };

@@ -1,4 +1,13 @@
-type Package = {
+export type Package = {
+  _id: string;
+  name: string;
+  description: string;
+  "dist-tags": {
+    latest: string;
+  };
+};
+
+type SearchPackage = {
   name: string;
   scope: string;
   version: string;
@@ -6,7 +15,7 @@ type Package = {
 };
 
 type PackageArray = {
-  package: Package;
+  package: SearchPackage;
 };
 
 export type NpmSearch = {

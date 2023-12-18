@@ -4,6 +4,7 @@ import { getUniqueArray } from "@/lib/helper";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Icon from "./icon";
+import PackageDetails from "./hover-card";
 
 type PackageTagProps = {
   packageString?: string;
@@ -27,7 +28,7 @@ const PackageTag: React.FC<PackageTagProps> = ({ packageString }) => {
           color="primary"
           className="flex cursor-pointer items-center gap-3 rounded-full border border-zinc-200 px-2 py-1 text-zinc-500"
         >
-          <span className="text-sm">{pkg}</span>
+          <PackageDetails name={pkg} />
 
           <Icon
             onClick={() => removePackage(pkg)}
