@@ -1,5 +1,6 @@
 const api_url = process.env.NEXT_PUBLIC_API_URL;
-const proxy = `https://cors-anywhere.herokuapp.com/`;
+//localhost:3000/api/npm?url=https://registry.npmjs.org/vue;
+const BASE_URL = "http://localhost:3000";
 
 interface ClientOptions {
   data?: Record<string, string>;
@@ -30,8 +31,10 @@ const client = async (
     ...customConfig,
   };
 
-  const url = root ? `${root}/${endpoint}` : `${api_url}/${endpoint}`;
-  const response = await fetch(`${proxy}${url}`, config);
+  const url = root
+    ? `api/npm?url=${root}/${endpoint}`
+    : `api/npm?url=${api_url}/${endpoint}`;
+  const response = await fetch(`${BASE_URL}/${url}`, config);
 
   if (response.ok) {
     return response.json();
