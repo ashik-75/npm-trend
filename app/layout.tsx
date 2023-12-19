@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
 import AppProvider from "@/providers/app-provider";
-import PackageTag from "@/ui/package-tag";
-import SearchBar from "@/ui/search-bar";
-import SearchSuggestion from "@/ui/search-suggestion";
 
 import { Inter } from "next/font/google";
+import clsx from "clsx";
+import Sidebar from "@/ui/sidebar";
+import TopBar from "@/ui/top-bar";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -24,15 +24,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AppProvider>
-          <div className="mx-auto max-w-7xl space-y-5 px-3">
-            <SearchBar />
+      <body className={clsx(inter.className, " w-full")}>
+        <div className="mx-auto max-w-7xl">
+          <TopBar />
+          <div className="grid lg:grid-cols-[300px_minmax(0,1fr)]">
+            <Sidebar />
 
             <div>{children}</div>
-            <SearchSuggestion />
           </div>
-        </AppProvider>
+        </div>
       </body>
     </html>
   );

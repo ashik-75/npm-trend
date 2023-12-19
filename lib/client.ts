@@ -1,22 +1,14 @@
-const api_url = process.env.NEXT_PUBLIC_API_URL;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface ClientOptions {
   data?: Record<string, string>;
   token?: string;
   headers?: Record<string, string>;
-  root?: string;
 }
 
 const client = async (
   endpoint: string,
-  {
-    data,
-    token,
-    headers: customHeaders,
-    root,
-    ...customConfig
-  }: ClientOptions = {},
+  { data, token, headers: customHeaders, ...customConfig }: ClientOptions = {},
 ) => {
   const config: RequestInit = {
     method: data ? "POST" : "GET",
@@ -30,10 +22,7 @@ const client = async (
     ...customConfig,
   };
 
-  const url = root
-    ? `api/npm?url=${root}/${endpoint}`
-    : `api/npm?url=${api_url}/${endpoint}`;
-  const response = await fetch(`${BASE_URL}/${url}`, config);
+  const response = await fetch(`${BASE_URL}/${endpoint}`, config);
 
   if (response.ok) {
     return response.json();
