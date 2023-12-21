@@ -6,7 +6,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { NextUIProvider } from "@nextui-org/react";
+import { ThemeProvider } from "next-themes";
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -26,7 +26,14 @@ export const queryClient = new QueryClient({
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <NextUIProvider>{children}</NextUIProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

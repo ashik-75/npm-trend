@@ -3,8 +3,8 @@ import AppProvider from "@/providers/app-provider";
 
 import { Inter } from "next/font/google";
 import clsx from "clsx";
-import Sidebar from "@/ui/sidebar";
-import TopBar from "@/ui/top-bar";
+import Sidebar from "@/components/composite/sidebar";
+import TopBar from "@/components/composite/top-bar";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -24,16 +24,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(inter.className, " w-full")}>
-        <div className="mx-auto max-w-7xl">
-          <TopBar />
-          <div className="grid lg:grid-cols-[300px_minmax(0,1fr)]">
-            <Sidebar />
+      <AppProvider>
+        <body className={clsx(inter.className, " m-0 w-full")}>
+          <div className="container">
+            <TopBar />
+            <div className="grid lg:grid-cols-[300px_minmax(0,1fr)]">
+              <Sidebar />
 
-            <div>{children}</div>
+              <div>{children}</div>
+            </div>
           </div>
-        </div>
-      </body>
+        </body>
+      </AppProvider>
     </html>
   );
 }
