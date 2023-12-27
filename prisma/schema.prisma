@@ -62,7 +62,7 @@ model Chapter {
   isFree Boolean @default(false)
 
   muxData MuxData?
-    userProgress UserProgress[]
+  userProgress UserProgress[]
 
   courseId String
   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)

@@ -3,7 +3,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
-import { Pencil, PlusCircle } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,44 +16,45 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
-import { Chapter, Course } from "@prisma/client";
-import { Textarea } from "@/components/ui/textarea";
-import clsx from "clsx";
-import { ChaptersList } from "./chapter-list";
+import { Chapter } from "@prisma/client";
 
-type ChapterFormProps = {
-  initialData: Course & {
-    chapters: Chapter[];
-  };
+type ChapterTitleFormProps = {
+  initialData: Chapter;
   courseId: string;
+  chapterId: string;
 };
 
 const schema = z.object({
-  title: z.string().min(1),
+  title: z.string().min(1, {
+    message: "Title is required",
+  }),
 });
 
 type SchemaType = z.infer<typeof schema>;
 
-const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
-  const [isCreating, setIsCreating] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
+const ChapterTitleForm = ({
+  initialData,
+  courseId,
+  chapterId,
+}: ChapterTitleFormProps) => {
+  const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
 
   const form = useForm<SchemaType>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      title: "",
-    },
+    defaultValues: initialData,
   });
 
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: SchemaType) => {
     try {
-      await axios.post(`/api/courses/${courseId}/chapter`, values);
+      await axios.patch(
+        `/api/courses/${courseId}/chapter/${chapterId}`,
+        values,
+      );
       toggleEditing();
       router.refresh();
-      form.reset({ title: "" });
       toast.success("course updated");
     } catch (error) {
       toast.error("Something went wrong");
@@ -61,27 +62,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
   };
 
   const toggleEditing = () => {
-    setIsCreating((prev) => !prev);
-  };
-
-  const onEdit = (chapterId: string) => {
-    router.push(`/teacher/courses/${courseId}/chapter/${chapterId}`);
-  };
-
-  const onReorder = async (updateData: { id: string; position: number }[]) => {
-    try {
-      setIsUpdating(true);
-
-      await axios.put(`/api/courses/${courseId}/chapter/reorder`, {
-        list: updateData,
-      });
-      toast.success("Chapters reordered");
-      router.refresh();
-    } catch {
-      toast.error("Something went wrong");
-    } finally {
-      setIsUpdating(false);
-    }
+    setIsEditing((prev) => !prev);
   };
 
   return (
@@ -93,37 +74,21 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
           variant="ghost"
           className="flex gap-x-2 text-zinc-600"
         >
-          {isCreating ? (
+          {isEditing ? (
             <>
               <span>Cancel</span>
             </>
           ) : (
             <>
-              <PlusCircle size={16} className="text-zinc-600" />
-              <span className="text-zinc-600">Add Chapter</span>
+              <Pencil size={16} className="text-zinc-600" />
+              <span className="text-zinc-600">Edit</span>
             </>
           )}
         </Button>
       </div>
-      {!isCreating && (
-        <div
-          className={clsx({
-            "italic text-slate-400": !initialData?.chapters?.length,
-          })}
-        >
-          {initialData?.chapters?.length > 0 ? (
-            <ChaptersList
-              onEdit={onEdit}
-              onReorder={onReorder}
-              items={initialData?.chapters}
-            />
-          ) : (
-            "No chapter yet"
-          )}
-        </div>
-      )}
-
-      {isCreating && (
+      {!isEditing ? (
+        <div>{initialData.title}</div>
+      ) : (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -132,7 +97,10 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="e.g 'Course Title'" {...field} />
+                    <Input
+                      placeholder="e.g 'Advanced react rourses'"
+                      {...field}
+                    />
                   </FormControl>
 
                   <FormMessage />
@@ -148,4 +116,4 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
   );
 };
 
-export default ChapterForm;
+export default ChapterTitleForm;
