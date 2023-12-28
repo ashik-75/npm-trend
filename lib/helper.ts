@@ -7,3 +7,11 @@ export const format = (price: number) => {
     currency: "USD",
   }).format(price);
 };
+
+export const sleep = (duration: number = 5000) => {
+  return new Promise((resolve) => {
+    return setTimeout(() => {
+      resolve("did it successfully");
+    }, duration);
+  });
+};
