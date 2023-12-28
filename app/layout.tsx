@@ -2,6 +2,7 @@ import ToastProvider from "@/providers/toast-provider";
 import React from "react";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import clsx from "clsx";
 
 export const metadata = {
   title: "Npm Trends",
@@ -17,7 +18,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={clsx(inter.className)}>
           <ToastProvider />
           {children}
         </body>

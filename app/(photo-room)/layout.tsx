@@ -10,8 +10,8 @@ export const metadata = {
 
 export default function Dashboard({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <div>
+    <div className="h-full">
+      <div className="h-full">
         <nav className="fixed left-0 top-0 h-[80px] w-full">
           <Navbar />
         </nav>

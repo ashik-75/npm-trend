@@ -8,7 +8,7 @@ type PhotoListProps = {
 const PhotoList = ({ photos }: PhotoListProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {photos.map((photo) => (
+      {photos.slice(0, 1).map((photo) => (
         <Link key={photo.id} href={`/photos/${photo.id}`}>
           <div className="space-y-2 rounded-lg border p-4  opacity-100 transition hover:opacity-75">
             <div className="relative aspect-video">

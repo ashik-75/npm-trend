@@ -5,7 +5,7 @@ import React from "react";
 const Logo = () => {
   return (
     <Link href={"/"}>
-      <Image src={"/logo.svg"} alt="logo" width={130} height={130} />;
+      <Image src={"/logo.svg"} alt="logo" width={130} height={130} />
     </Link>
   );
 };

@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import clerkClient from "@clerk/clerk-sdk-node";
 export async function POST(
