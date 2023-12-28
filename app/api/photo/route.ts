@@ -18,6 +18,8 @@ export async function POST(req: Request) {
       },
     });
 
+    console.log({ photo });
+
     return NextResponse.json(photo);
   } catch (error) {
     console.log("[PHOTO_CREATE]", error);

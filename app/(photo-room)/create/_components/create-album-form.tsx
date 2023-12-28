@@ -6,6 +6,13 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { FileUpload } from "@/components/file-uploade";
+import Image from "next/image";
+import SubmitButton from "@/components/submit-button";
 
 const schema = z.object({
   title: z.string().min(1),
@@ -15,15 +22,6 @@ const schema = z.object({
 
 type AlbumFormType = z.infer<typeof schema>;
 
-// import { Photo } from "@prisma/client";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import toast from "react-hot-toast";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { FileUpload } from "@/components/file-uploade";
-import Image from "next/image";
-import SubmitButton from "@/components/submit-button";
 const CreateAlbumForm = () => {
   const router = useRouter();
   const form = useForm<AlbumFormType>({

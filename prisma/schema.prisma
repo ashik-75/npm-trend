@@ -29,7 +29,7 @@ model Feedback {
   description String
 
   photoId String
-  photo Photo @relation(fields: [photoId],references: [id])
+  photo Photo @relation(fields: [photoId],references: [id],onDelete: Cascade)
 
   cretaedAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -5,6 +5,7 @@ import React, { Suspense } from "react";
 import FeedbackForm from "./_components/feedback-form";
 import FeedbackList from "./_components/feedback-list";
 import FeedbackLoader from "./_components/feedback-loader";
+import BlurImage from "@/components/blur-image";
 
 const PhotoDetails = async ({ params }: { params: { photoId: string } }) => {
   const photo = await db.photo.findUnique({
@@ -20,14 +21,7 @@ const PhotoDetails = async ({ params }: { params: { photoId: string } }) => {
   return (
     <div className="space-y-5 p-6">
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        <div className="relative aspect-video opacity-100 transition hover:opacity-75">
-          <Image
-            src={photo?.imageUrl}
-            alt={photo?.title}
-            fill
-            className="rounded-lg shadow-sm"
-          />
-        </div>
+        <BlurImage alt={photo.title} imageUrl={photo.imageUrl} />
 
         <div className="space-y-1">
           <h1 className="text-xl font-bold text-zinc-600">{photo.title}</h1>
