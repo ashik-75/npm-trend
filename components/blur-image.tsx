@@ -17,10 +17,13 @@ const BlurImage = ({ imageUrl, alt }: BlurImageProps) => {
         src={imageUrl}
         fill
         alt={alt}
-        className={clsx("transition duration-700 ease-in-out", {
-          "scale-110 blur-2xl grayscale": isLoading,
-          "scale-100 blur-0 grayscale-0": !isLoading,
-        })}
+        className={clsx(
+          "object-cover object-center transition duration-700 ease-in-out",
+          {
+            "scale-110 blur-2xl grayscale": isLoading,
+            "scale-100 blur-0 grayscale-0": !isLoading,
+          },
+        )}
         onLoadingComplete={() => setIsLoading(false)}
       />
     </div>

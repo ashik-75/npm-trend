@@ -1,5 +1,3 @@
-import "@/styles/globals.css";
-
 import Sidebar from "./_components/sidebar";
 import Navbar from "./_components/navbar";
 
@@ -18,7 +16,9 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
         <aside className="fixed top-[80px] hidden h-full shrink-0 md:flex md:w-56">
           <Sidebar />
         </aside>
-        <main className="h-full pt-[80px] md:pl-56">{children}</main>
+        <main className="mx-auto h-full max-w-7xl pt-[80px] md:pl-56">
+          {children}
+        </main>
       </div>
     </div>
   );

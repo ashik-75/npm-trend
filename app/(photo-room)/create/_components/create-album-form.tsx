@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { FileUpload } from "@/components/file-uploade";
 import Image from "next/image";
 import SubmitButton from "@/components/submit-button";
+import BlurImage from "@/components/blur-image";
 
 const schema = z.object({
   title: z.string().min(1),
@@ -55,13 +56,10 @@ const CreateAlbumForm = () => {
         />
 
         {form.getValues("imageUrl") ? (
-          <div className="relative aspect-video overflow-hidden rounded-lg shadow-sm">
-            <Image
-              src={form.getValues("imageUrl")}
-              alt={form.getValues("imageUrl")}
-              fill
-            />
-          </div>
+          <BlurImage
+            imageUrl={form.getValues("imageUrl")}
+            alt={form.getValues("imageUrl")}
+          />
         ) : (
           <FormField
             control={form.control}

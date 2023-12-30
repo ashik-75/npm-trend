@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import Image from "next/image";
 import React, { Suspense } from "react";
 import FeedbackForm from "./_components/feedback-form";
 import FeedbackList from "./_components/feedback-list";
