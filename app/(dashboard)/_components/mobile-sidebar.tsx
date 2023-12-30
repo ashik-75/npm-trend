@@ -13,7 +13,7 @@ const MobileSidebar = () => {
         </Button>
       </SheetTrigger>
       <SheetContent
-        className="w-[250px] border-neutral-700 bg-neutral-800 p-0"
+        className="w-[300px] border-neutral-700 bg-neutral-800 p-0"
         side={"left"}
       >
         <Sidebar />
