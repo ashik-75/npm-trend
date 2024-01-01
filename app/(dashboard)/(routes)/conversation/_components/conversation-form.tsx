@@ -27,7 +27,9 @@ type ConvsersationSchemaType = z.infer<typeof convsersationSchema>;
 
 const ConversationForm = () => {
   const user = useUser();
-  const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
+    [],
+  );
   const form = useForm<ConvsersationSchemaType>({
     resolver: zodResolver(convsersationSchema),
     defaultValues: {
@@ -90,7 +92,7 @@ const ConversationForm = () => {
       <div className="flex flex-col-reverse gap-y-4 ">
         {messages?.map((message, index) => (
           <div
-            key={typeof message.content === "string" ? message.content : index}
+            key={message.content}
             className={cn(
               "flex w-full items-start gap-x-8 rounded-lg bg-neutral-800 p-8",
               message.role === "user" ? "text-neutral-50" : "text-neutral-50",
