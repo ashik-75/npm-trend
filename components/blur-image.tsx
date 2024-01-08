@@ -3,28 +3,23 @@
 import clsx from "clsx";
 import Image from "next/image";
 import React, { useState } from "react";
-
 type BlurImageProps = {
-  imageUrl: string;
-  alt: string;
+  url: string;
+  alt?: string | number;
 };
-
-const BlurImage = ({ imageUrl, alt }: BlurImageProps) => {
-  const [isLoading, setIsLoading] = useState(true);
+const BlurImage = ({ url, alt }: BlurImageProps) => {
+  const [loaded, setLoaded] = useState(false);
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+    <div className="aspect-w-16 aspect-h-9 relative overflow-hidden rounded-3xl">
       <Image
-        src={imageUrl}
         fill
-        alt={alt}
-        className={clsx(
-          "object-cover object-center transition duration-700 ease-in-out",
-          {
-            "scale-110 blur-2xl grayscale": isLoading,
-            "scale-100 blur-0 grayscale-0": !isLoading,
-          },
-        )}
-        onLoadingComplete={() => setIsLoading(false)}
+        src={url}
+        alt={`${alt}`}
+        onLoadingComplete={() => setLoaded(true)}
+        className={clsx("object-cover duration-700 hover:scale-110", {
+          "scale-125 blur-xl grayscale": !loaded,
+          "scale-100 blur-0 grayscale-0": loaded,
+        })}
       />
     </div>
   );
