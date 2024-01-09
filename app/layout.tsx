@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-
+import { ClerkProvider } from "@clerk/nextjs";
 import ToastProvider from "@/providers/toast-provider";
 import React from "react";
 import { Inter } from "next/font/google";
@@ -17,12 +17,14 @@ const inter = Inter({
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body className={clsx(inter.className, "h-full")}>
-        <ToastProvider />
-        <AppProvider>{children}</AppProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={clsx(inter.className, "h-full")}>
+          <ToastProvider />
+          <AppProvider>{children}</AppProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 };
 
