@@ -1,22 +1,50 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import qs from "query-string";
 
 type PhotoPagination = {
-  page?: number;
   total_page?: number;
 };
 
-function PhotoPagination({ page, total_page }: PhotoPagination) {
+function PhotoPagination({ total_page }: PhotoPagination) {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  if (!page || !total_page) return null;
+  const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
+  const per_page = searchParams.get("per_page")
+    ? Number(searchParams.get("per_page"))
+    : 5;
+  const search = searchParams.get("search");
+
+  if (!total_page) return null;
+
+  function handleQs(pageNumber: number) {
+    return qs.stringify(
+      {
+        search,
+        page: pageNumber,
+        per_page,
+      },
+      { skipNull: true, skipEmptyString: true },
+    );
+  }
+  const handlePagination = (btnType: "previous" | "next") => {
+    if (btnType === "previous") {
+      const query = handleQs(page - 1);
+      router.push(`/photo/?${query}`);
+    } else {
+      const query = handleQs(page + 1);
+      router.push(`/photo/?${query}`);
+    }
+  };
+
   return (
     <div className="flex items-center">
       <Button
         disabled={page === 1}
-        onClick={() => router.push(`?page=${page - 1}`)}
+        onClick={() => handlePagination("previous")}
         variant={"ghost"}
         className="space-x-2"
       >
@@ -26,7 +54,7 @@ function PhotoPagination({ page, total_page }: PhotoPagination) {
 
       <Button
         disabled={page === total_page}
-        onClick={() => router.push(`?page=${page + 1}`)}
+        onClick={() => handlePagination("next")}
         variant={"ghost"}
         className="space-x-2"
       >
