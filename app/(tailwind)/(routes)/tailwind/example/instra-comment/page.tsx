@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { faker } from "@faker-js/faker";
 import CommentDrawer from "./_components/comments-drawer";
 
@@ -21,7 +21,7 @@ const InstraComment = () => {
             </h1>
           </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <h1 className="line-clamp-1 font-medium text-zinc-600 dark:text-zinc-300">
             {faker.lorem.lines(1)}
           </h1>
