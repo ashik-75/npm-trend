@@ -1,3 +1,4 @@
+import { faker } from "@faker-js/faker";
 const links = [
   {
     id: 1,
@@ -30,5 +31,20 @@ const links = [
     label: "Instragram Comment",
   },
 ];
+export type CommentType = { url: string; name: string; comment: string };
 
-export { links };
+const comments: CommentType[] = [];
+
+const LIMIT = 100;
+
+for (let i = 1; i <= LIMIT; i++) {
+  const info = {
+    url: faker.image.avatar(),
+    name: faker.person.fullName(),
+    comment: faker.lorem.paragraph(2),
+  };
+
+  comments.push(info);
+}
+
+export { links, comments };

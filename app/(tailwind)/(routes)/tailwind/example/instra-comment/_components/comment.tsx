@@ -1,17 +1,22 @@
+import { CommentType } from "@/app/(tailwind)/constant";
 import React from "react";
 
-const Comment = () => {
+const Comment = ({ comment }: { comment: CommentType }) => {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 rounded-xl border p-2 dark:border-zinc-900">
       <img
         className="h-10 w-10 rounded-full object-cover"
-        src="https://source.unsplash.com/a-woman-holding-a-bunch-of-green-flowers-PzQ9Y5CIyIY"
+        src={comment.url}
         alt={"FF"}
       />
 
       <div>
-        <h1>Malvika X</h1>
-        <p>wow amazing man, nice to see you again</p>
+        <h1 className="text-sm font-medium text-zinc-600 dark:text-zinc-300">
+          {comment.name}
+        </h1>
+        <p className="line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
+          {comment.comment}
+        </p>
       </div>
     </div>
   );

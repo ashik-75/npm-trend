@@ -1,16 +1,20 @@
 import React from "react";
 import Comment from "./comment";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { sleep } from "@/lib/utils";
+import { comments } from "@/app/(tailwind)/constant";
 
-const CommentList = () => {
+const CommentList = async () => {
+  await sleep(1000);
+
   return (
-    <div className="h-[400px]">
-      <ScrollArea className="h-full space-y-2">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <Comment key={i + 1} />
+    <ScrollArea className="h-[400px] pt-2">
+      <div className="space-y-2">
+        {comments.map((comment) => (
+          <Comment comment={comment} key={comment.url} />
         ))}
-      </ScrollArea>
-    </div>
+      </div>
+    </ScrollArea>
   );
 };
 
