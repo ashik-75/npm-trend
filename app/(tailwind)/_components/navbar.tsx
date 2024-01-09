@@ -1,6 +1,6 @@
 "use client";
-import { UserButton } from "@clerk/nextjs";
-import { Laptop, Moon, Sun } from "lucide-react";
+
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import React from "react";
@@ -26,8 +26,6 @@ const Navbar = () => {
       >
         {theme === "light" ? <Sun /> : <Moon />}
       </button>
-
-      <UserButton />
     </div>
   );
 };
