@@ -8,12 +8,12 @@ const guestRoutes = [
   {
     icon: Compass,
     label: "Browse",
-    href: "/",
+    href: "/photo",
   },
   {
     icon: Layout,
     label: "Create",
-    href: "/create",
+    href: "/photo/create",
   },
 ];
 

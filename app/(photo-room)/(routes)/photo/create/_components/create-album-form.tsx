@@ -36,11 +36,15 @@ const CreateAlbumForm = () => {
       await axios.post(`/api/photo`, values);
       toast.success("photo created");
       router.refresh();
-      router.push("/");
+      form.reset();
+      // router.push("/photo");
     } catch (error) {
       toast.error("Something went wrong");
     }
   };
+
+  console.log("FT ", form.getValues("title"));
+
   return (
     <Form {...form}>
       <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
@@ -49,36 +53,26 @@ const CreateAlbumForm = () => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <Input placeholder="e.g 'Sunset on the moon rise'" {...field} />
+              <Input
+                placeholder="e.g 'Sunset on the moon rise'"
+                {...field}
+                value={form.getValues("title")}
+              />
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {form.getValues("imageUrl") ? (
-          <BlurImage
-            imageUrl={form.getValues("imageUrl")}
-            alt={form.getValues("imageUrl")}
-          />
-        ) : (
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FileUpload
-                  endpoint="courseImage"
-                  onChange={(url) => {
-                    if (url) {
-                      field.onChange(url);
-                    }
-                  }}
-                />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        )}
+        <FormField
+          control={form.control}
+          name="imageUrl"
+          render={({ field }) => (
+            <FormItem>
+              <Input placeholder="e.g 'https://example.com/photo'" {...field} />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}

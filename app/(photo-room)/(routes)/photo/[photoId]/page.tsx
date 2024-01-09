@@ -20,7 +20,7 @@ const PhotoDetails = async ({ params }: { params: { photoId: string } }) => {
   return (
     <div className="space-y-5 p-6">
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        <BlurImage alt={photo.title} imageUrl={photo.imageUrl} />
+        <BlurImage alt={photo.title} url={photo.imageUrl} />
 
         <div className="space-y-1">
           <h1 className="text-xl font-bold text-zinc-600">{photo.title}</h1>

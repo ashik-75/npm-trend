@@ -1,19 +1,14 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
-import { NextResponse } from "next/server";
+
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth();
-    if (!userId) {
-      return new NextResponse("UnAuthorized", { status: 401 });
-    }
-
     const body = await req.json();
 
     const photo = await db.photo.create({
       data: {
-        userId,
+        userId: 101,
         ...body,
       },
     });
@@ -27,11 +22,30 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    const photos = await db.photo.findMany();
+    const searchParams = req.nextUrl.searchParams;
+    const page = searchParams.get("page")
+      ? Number(searchParams.get("page"))
+      : 1;
+    const limit = searchParams.get("limit")
+      ? Number(searchParams.get("limit"))
+      : 5;
 
-    return NextResponse.json(photos);
+    const totalItems = await db.photo.count();
+    const itemPerpage = 5;
+    const totalPage = Math.ceil(totalItems / itemPerpage);
+
+    const photos = await db.photo.findMany({
+      take: limit,
+      skip: (page - 1) * limit,
+    });
+
+    return NextResponse.json({
+      page,
+      totalPage,
+      data: photos,
+    });
   } catch (error) {
     console.log("[ALL_PHOTO_GET]", error);
     return new NextResponse("Internal Server Error", { status: 500 });

@@ -18,12 +18,10 @@ const inter = Inter({
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <AppProvider>
-        <body className={clsx(inter.className, "h-full")}>
-          <ToastProvider />
-          {children}
-        </body>
-      </AppProvider>
+      <body className={clsx(inter.className, "h-full")}>
+        <ToastProvider />
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 };

@@ -16,7 +16,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
         <aside className="fixed top-[80px] hidden h-full shrink-0 md:flex md:w-56">
           <Sidebar />
         </aside>
-        <main className="mx-auto h-full max-w-7xl pt-[80px] md:pl-56">
+        <main className="mx-auto h-full max-w-7xl pt-[80px] dark:bg-slate-950 md:pl-56">
           {children}
         </main>
       </div>

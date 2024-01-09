@@ -4,7 +4,7 @@ import SidebarRoutes from "./sidebar-routes";
 
 const Sidebar = () => {
   return (
-    <div className="h-full w-full border-r">
+    <div className="h-full w-full border-r dark:bg-slate-900">
       <div className="p-2">
         <SidebarRoutes />
       </div>

@@ -47,6 +47,10 @@ const Home = () => {
         <li>
           <Link href={"/dashboard"}>AI Sass</Link>
         </li>
+
+        <li>
+          <Link href={"/photo"}>Photo</Link>
+        </li>
       </ul>
     </div>
   );

@@ -7,7 +7,7 @@ const MobileSidebar = dynamic(() => import("./mobile-sidebar"), { ssr: false });
 
 const Navbar = () => {
   return (
-    <div className="flex h-full w-full items-center justify-between border-b-[1px] bg-white px-5">
+    <div className="flex h-full w-full items-center justify-between border-b-[1px] bg-white px-5 dark:bg-slate-950">
       <div className="flex items-center">
         <MobileSidebar />
 
