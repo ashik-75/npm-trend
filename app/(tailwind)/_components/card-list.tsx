@@ -4,7 +4,7 @@ import Card from "./card";
 import { sleep } from "@/lib/utils";
 
 const CardList = async () => {
-  await sleep();
+  await sleep(2000);
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {links.map((link) => (

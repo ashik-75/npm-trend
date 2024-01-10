@@ -30,6 +30,11 @@ const links = [
     href: "/tailwind/example/instra-comment",
     label: "Instragram Comment",
   },
+  {
+    id: 6,
+    href: "/tailwind/example/ricky",
+    label: "Rick & Morty",
+  },
 ];
 export type CommentType = { url: string; name: string; comment: string };
 
