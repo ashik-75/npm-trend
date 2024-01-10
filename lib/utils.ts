@@ -12,3 +12,15 @@ export const sleep = (duration = 5000) => {
     }, duration);
   });
 };
+
+export async function Await<T>({
+  promise,
+  children,
+}: {
+  promise: Promise<T>;
+  children: (value: T) => JSX.Element;
+}) {
+  let data = await promise;
+
+  return children(data);
+}

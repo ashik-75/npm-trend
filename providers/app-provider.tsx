@@ -4,12 +4,9 @@ import React from "react";
 import { ThemeProvider } from "next-themes";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
-type AppProviderProps = {
-  children: React.ReactNode;
-};
-
-const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -21,16 +18,17 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       }),
   );
   return (
-    // <QueryClientProvider client={queryClient}>
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      {children}
-    </ThemeProvider>
-    // </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Toaster />
+        {children}
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
