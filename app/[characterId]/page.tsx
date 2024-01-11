@@ -26,7 +26,7 @@ const CharacterDetails = async ({
   if (!character) return notFound();
 
   return (
-    <div className="container grid grid-cols-2 gap-5">
+    <div className="container grid grid-cols-1 gap-5 md:grid-cols-2">
       <div>
         <div className="aspect-h-9 aspect-w-16 relative overflow-hidden rounded-3xl">
           <Image

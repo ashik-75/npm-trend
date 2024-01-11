@@ -12,7 +12,7 @@ const Character = ({ character }: { character: CharacterType }) => {
             src={character.image}
             alt={character.name}
             fill
-            className="object-cover brightness-50 "
+            className="object-cover opacity-90 duration-700 hover:scale-110 hover:opacity-100"
           />
         </div>
         <div>

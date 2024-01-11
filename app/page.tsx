@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Page = () => {
   return (
-    <ul className="list list-decimal space-y-2">
+    <ul className="list list-decimal space-y-2 p-5">
       <li className="underline">
         <Link href={"/search-with-pagination"}>Search with pagination</Link>
       </li>
