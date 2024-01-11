@@ -18,6 +18,17 @@ export async function getCharacters(
   return characters;
 }
 
+export async function fetchInfiniteCharacter(
+  url: string,
+): Promise<CharactersResponse> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("something went wrong");
+  }
+  const characters = await response.json();
+  return characters;
+}
+
 export async function getCharacter(id: string): Promise<CharacterType> {
   try {
     const response = await fetch(

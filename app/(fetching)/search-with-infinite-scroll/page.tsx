@@ -11,8 +11,6 @@ import React from "react";
 const SearchWithInfiniteScroll = () => {
   const searchParams = useSearchParams();
   const q = searchParams.get("q") || "";
-  const page = searchParams.get("page");
-  const pageNumber = page ? Number(page) : 1;
 
   const {
     data,
@@ -25,8 +23,11 @@ const SearchWithInfiniteScroll = () => {
     queryKey: ["character", q],
     queryFn: ({ pageParam }) => getCharacters(q, pageParam),
     initialPageParam: 1,
-    getNextPageParam: (lastPage) =>
-      lastPage.info.pages > pageNumber ? pageNumber + 1 : undefined,
+    getNextPageParam: (lastPage, pages) => {
+      const length = pages.length ?? 1;
+
+      return lastPage.info.pages > length ? length + 1 : undefined;
+    },
   });
 
   const characters = data?.pages?.flatMap((page) => page.results) || [];
