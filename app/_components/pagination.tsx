@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import qs from "query-string";
 
-const Pagination = ({ total_page }: { total_page: number }) => {
+const Pagination = ({ total_page }: { total_page?: number }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -35,14 +35,19 @@ const Pagination = ({ total_page }: { total_page: number }) => {
         { skipEmptyString: true, skipNull: true },
       );
     }
-    router.push(`/ricky?${query}`);
+    router.push(`?${query}`);
   };
   return (
-    <div className="space-x-2">
-      <Button disabled={page < 2} onClick={() => handlePagination("prev")}>
+    <div className="space-x-2 py-10">
+      <Button
+        variant={"outline"}
+        disabled={page < 2}
+        onClick={() => handlePagination("prev")}
+      >
         Previous
       </Button>
       <Button
+        variant={"outline"}
         disabled={page === total_page}
         onClick={() => handlePagination("next")}
       >

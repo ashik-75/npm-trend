@@ -4,14 +4,16 @@ import { CharacterType, CharactersResponse, EpisodeType } from "./types";
 
 export async function getCharacters(
   query: string,
-  page: string,
+  page: number,
 ): Promise<CharactersResponse> {
   const url = `https://rickandmortyapi.com/api/character/?name=${
     query || ""
   }&page=${page || 1}`;
 
   const response = await fetch(url);
-
+  if (!response.ok) {
+    throw new Error("something went wrong");
+  }
   const characters = await response.json();
   return characters;
 }

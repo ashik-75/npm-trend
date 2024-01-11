@@ -9,23 +9,25 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className=" flex h-full items-center justify-between px-10 backdrop-blur-sm">
-      <Link href={"/ricky"}>
-        <h1 className="font-nunito text-3xl font-extrabold">
-          <span className="bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
-            Data Fetching
-          </span>
-        </h1>
-      </Link>
+    <div className="h-full  backdrop-blur-sm">
+      <div className="container flex h-full items-center justify-between  px-5">
+        <Link href={"/"}>
+          <h1 className="font-nunito text-xl font-extrabold">
+            <span className="bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
+              Client Side Data Fetching and pagination
+            </span>
+          </h1>
+        </Link>
 
-      <button
-        onClick={() =>
-          theme === "dark" ? setTheme("light") : setTheme("dark")
-        }
-        className="rounded-full border border-dashed border-zinc-500 p-2 dark:border-zinc-300"
-      >
-        {theme === "light" ? <Sun /> : <Moon />}
-      </button>
+        <button
+          onClick={() =>
+            theme === "dark" ? setTheme("light") : setTheme("dark")
+          }
+          className="rounded-full border border-dashed border-zinc-500 p-2 dark:border-zinc-300"
+        >
+          {theme === "light" ? <Sun /> : <Moon />}
+        </button>
+      </div>
     </div>
   );
 };

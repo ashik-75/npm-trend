@@ -2,7 +2,7 @@ import React from "react";
 import { CharacterType } from "../types";
 import Character from "./character";
 
-const Characters = async ({
+const CharacterList = ({
   characters,
 }: {
   characters: CharacterType[] | undefined;
@@ -20,4 +20,4 @@ const Characters = async ({
   );
 };
 
-export default Characters;
+export default CharacterList;

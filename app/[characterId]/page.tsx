@@ -3,6 +3,19 @@ import { getCharacter } from "../actions";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Episodes from "./episodes";
+import { Metadata } from "next";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { characterId: string };
+}): Promise<Metadata> => {
+  const character = await getCharacter(params.characterId);
+
+  return {
+    title: character.name,
+  };
+};
 
 const CharacterDetails = async ({
   params,
@@ -13,7 +26,7 @@ const CharacterDetails = async ({
   if (!character) return notFound();
 
   return (
-    <div className="container grid grid-cols-2 gap-5 p-5">
+    <div className="container grid grid-cols-2 gap-5">
       <div>
         <div className="aspect-h-9 aspect-w-16 relative overflow-hidden rounded-3xl">
           <Image

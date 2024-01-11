@@ -22,7 +22,7 @@ const Filtering = () => {
     );
 
     router.push(`?${query}`);
-  }, [value]);
+  }, [value, router, search]);
 
   return (
     <>

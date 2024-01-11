@@ -26,6 +26,7 @@ const Episodes = ({ episodes }: { episodes: string[] }) => {
                   ? "border-zinc-800 dark:border-zinc-100"
                   : "border-zinc-200 dark:border-zinc-700",
               )}
+              key={ep}
             >
               Episode {getEpisode(ep)}
             </p>
