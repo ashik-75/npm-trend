@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link href={"/"}>
           <h1 className="font-nunito text-xl font-extrabold">
             <span className="bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
-              Client Side Data Fetching and pagination
+              Client Side Data Fetching and pagination ...
             </span>
           </h1>
         </Link>
