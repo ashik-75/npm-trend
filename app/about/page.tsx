@@ -10,7 +10,6 @@ const Page = () => {
         architecto praesentium quia molestiae? Odio voluptatem tempore dolores
         eos quo ad. Nobis nisi, voluptatum quibusdam error iusto esse quisquam
         molestiae eos, aliquam eveniet eaque ratione voluptas facilis! Magni,
-        quis doloribus!
       </p>
     </div>
   );
