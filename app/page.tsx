@@ -5,12 +5,10 @@ const Page = () => {
   return (
     <ul className="list list-decimal space-y-2 p-5">
       <li className="underline">
-        <Link href={"/search-with-pagination"}>Search with pagination</Link>
+        <Link href={"/server-side"}>Server Side</Link>
       </li>
       <li className="underline">
-        <Link href={"/search-with-infinite-scroll"}>
-          Search with infinite scroll
-        </Link>
+        <Link href={"/client-side"}>client side</Link>
       </li>
       <li className="underline">
         <Link href={"/search-with-infinite-virtual"}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { getCharacter } from "../actions";
+import { getCharacter, getCharacters } from "../actions";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Episodes from "./episodes";
@@ -15,6 +15,14 @@ export const generateMetadata = async ({
   return {
     title: character.name,
   };
+};
+
+export const generateStaticParams = async () => {
+  const character = await getCharacters();
+
+  return character.results.map((ch) => ({
+    characterId: `${ch.id}`,
+  }));
 };
 
 const CharacterDetails = async ({
