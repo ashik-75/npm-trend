@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import { Loader } from "lucide-react";
+import React, { ReactNode, Suspense } from "react";
 
 const StreamLayout = ({
   children,
@@ -19,6 +20,7 @@ const StreamLayout = ({
 
       <div className="grid h-full grid-cols-4 gap-5">
         <div>{invoice}</div>
+
         <div>{worth}</div>
         <div>{revenue}</div>
         <div>{payment}</div>

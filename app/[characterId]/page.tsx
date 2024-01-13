@@ -17,13 +17,13 @@ export const generateMetadata = async ({
   };
 };
 
-export const generateStaticParams = async () => {
-  const character = await getCharacters();
+// export const generateStaticParams = async () => {
+//   const character = await getCharacters();
 
-  return character.results.map((ch) => ({
-    characterId: `${ch.id}`,
-  }));
-};
+//   return character.results.map((ch) => ({
+//     characterId: `${ch.id}`,
+//   }));
+// };
 
 const CharacterDetails = async ({
   params,
