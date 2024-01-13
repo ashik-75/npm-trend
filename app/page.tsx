@@ -11,9 +11,7 @@ const Page = () => {
         <Link href={"/client-side"}>client side</Link>
       </li>
       <li className="underline">
-        <Link href={"/search-with-infinite-virtual"}>
-          Search with infinite virtual
-        </Link>
+        <Link href={"/streaming"}>Streaming</Link>
       </li>
     </ul>
   );

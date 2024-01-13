@@ -13,6 +13,12 @@ export const sleep = (duration = 5000) => {
   });
 };
 
+export const dummyResponse = (inp: string): Promise<string> => {
+  return new Promise((resolve) => {
+    return resolve(inp);
+  });
+};
+
 export async function Await<T>({
   promise,
   children,
