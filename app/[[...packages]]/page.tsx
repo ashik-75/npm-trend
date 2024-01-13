@@ -20,7 +20,7 @@ const Details = ({ params }: { params: { packages: string[] } }) => {
     (downloadResponse
       ?.map((pkg) => pkg.data)
       .filter((pkg) => pkg?.package) as NpmDownload[]) || [];
-
+  // console.log({packageList})
   if (!packages || packages?.length === 0) return null;
 
   return (
