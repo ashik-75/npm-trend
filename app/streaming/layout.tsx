@@ -18,7 +18,7 @@ const StreamLayout = ({
     <div>
       <div>{children}</div>
 
-      <div className="grid h-full grid-cols-4 gap-5">
+      <div className="grid h-full grid-cols-1 gap-5 md:grid-cols-4">
         <div>{invoice}</div>
 
         <div>{worth}</div>

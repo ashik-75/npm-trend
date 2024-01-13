@@ -8,7 +8,7 @@ const payment = async () => {
 
   return (
     <div className="mt-5 max-w-md rounded-3xl border p-5">
-      <h1 className="text-5xl font-black text-rose-600">{res}</h1>
+      <h1 className="text-2xl font-black text-rose-600">{res}</h1>
     </div>
   );
 };
